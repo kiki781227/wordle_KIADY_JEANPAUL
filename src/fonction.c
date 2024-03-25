@@ -1,25 +1,39 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <ctype.h> 
 
 
-void Tab_mots(char Add[]) {
-    char Mots[1000*1000][5];
-    FILE* Fichier = fopen(Add, "r");
+void Tab_mots(char Mots[][6]) {
+    FILE* Fichier = fopen("../ressources/bdd_wordle.txt", "r");
     
-    char mot = 0;
-    while ( mot != 'A' )
-		mot = fgetc(Fichier);
-    
-	for (int i = 0; i < 10; i++) {
-		mot = fgetc(Fichier);
-		printf("%c" , mot);
-    }
+    int iMot = -1;
+    for (char Car = 'A'; Car <= 'Z'; Car++) {
+		
+		if ( Car == 'X' ) continue;
+		
+		while ( (fgetc(Fichier) != Car) || (fgetc(Fichier) != 13) );
+		
+		for (int i = 0; i < 7; i++) fgetc(Fichier);
+		
+		do {
+			iMot += 1;
+			fgets(Mots[iMot], 6, Fichier);
+			fgetc(Fichier);
+		} while ( isalpha(Mots[iMot][0]) );
+		
+		iMot -= 1;
+	}
+	
+	fclose(Fichier);
 
 }
 
 
 int main()
 {
-    Tab_mots("~/Documents/wordle_KIADY_JEANPAUL/ressources/bdd_wordle.txt");
-}
+	char Mots[2309][6];
+    Tab_mots(Mots);
     
+    for (int i = 0; i < 2309; i++)
+		printf("%s\n", Mots[i]);
+}
