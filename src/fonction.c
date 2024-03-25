@@ -2,15 +2,9 @@
 #include <stdio.h>
 #include <time.h>
 #include <ctype.h> 
+#include <string.h>
 #include "../include/wordle.h"
-
-int main() {
-	char Mots[2309][6];
-    Tab_mots(Mots);
-    
-    for (int i = 0; i < 2309; i++)
-		printf("%s\n", Mots[i]); // On lit chaque mot de 'Mots'
-}
+#define NBMOTS 2309
 
 void Tab_mots(char Mots[][6]) {
     FILE* Fichier = fopen("../ressources/bdd_wordle.txt", "r");
@@ -39,7 +33,17 @@ void Tab_mots(char Mots[][6]) {
 
 int RandInt() {
 	srand(time(NULL));
-	int r = rand() % 2310;
+	int r = rand() % ( NBMOTS + 1);
 
 	return r;
+}
+
+int ifInData(char mot[], char Tab[][6]) {
+	
+	for (int i = 0; i < NBMOTS; i++) {
+		if ( strcmp(mot, Tab[i]) )
+			return 1;
+	}
+	
+	return 0;
 }
