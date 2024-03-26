@@ -53,7 +53,7 @@ La première fonction est la fonction **Tab_mots()** :
 Elle prends en paramètre un tableau 2d mais ne renvoie rien. Elle modifie le tableau passé en paramètre pour lui insérer tout les mots indiqués dans le document bdd_wordle qui se trouve dans le dossier ressources.
 Pour cela, elle lit les caractères un à un jusqu'à ce qu'elle trouve une lettre majuscule accompagné d'un retour à la ligne. L'association de la lettre majuscule et du retour à la ligne indique que les prochains caractères sont des mots à traiter. La fonction met donc ces mots dans le tableau 2d passé en paramètre.
 
-La deuxième fonction est la fonction **RandInt()"" :
+La deuxième fonction est la fonction **RandInt()** :
 
 Elle ne prends aucun paramètre, mais renvoie un entier aléatoirement.
 Pour cela, on utilise les fonction **rand()** et **srand()**.
