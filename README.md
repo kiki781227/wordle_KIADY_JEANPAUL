@@ -7,6 +7,8 @@ ouvrir un terminal puis lancer les commandes suivantes :
 
 ```sh
 git clone https://github.com/kiki781227/wordle_KIADY_JEANPAUL.git
+```
+```sh
 cd wordle_KIADY_JEANPAUL
 ```
 
@@ -23,6 +25,8 @@ gcc -o bin/wordle src/wordle.c
 En etant a la racine du projet git dans un terminal :
 ```sh
 cd bin
+```
+```sh
 ./wordle
 ```
 
