@@ -47,3 +47,13 @@ int ifInData(char mot[], char Tab[][6]) {
 	
 	return 0;
 }
+
+bool Find_Letter (char Mot[], char lettre)
+{
+	if(strchr(Mot, lettre) != NULL)
+	{
+		return true;
+	}
+	else
+	return false;
+}
