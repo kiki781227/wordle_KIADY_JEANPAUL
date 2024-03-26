@@ -13,7 +13,7 @@ int main()
 	int cmpt_vert=0;
 
 	
-	printf("%s \n", tab1);
+	printf("Le mot a trouver commence par la lettre %c. \n", tab1[0]);
 	
 	while(compteur < 6)
 	{	

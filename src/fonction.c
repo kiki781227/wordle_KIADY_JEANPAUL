@@ -3,10 +3,12 @@
 #include <time.h>
 #include <ctype.h> 
 #include <string.h>
+#include <stdbool.h>
 #include "../include/wordle.h"
 #define NBMOTS 2309
+#define Len_Mot 6
 
-void Tab_mots(char Mots[][6]) {
+void Tab_mots(char Mots[][Len_Mot]) {
     FILE* Fichier = fopen("../ressources/bdd_wordle.txt", "r");
     
     int iMot = -1;
@@ -20,7 +22,7 @@ void Tab_mots(char Mots[][6]) {
 		
 		do {
 			iMot += 1;
-			fgets(Mots[iMot], 6, Fichier); // On lie un mot de 6 caractères (les 5 lettres et le '\0')
+			fgets(Mots[iMot], Len_Mot, Fichier); // On lie un mot de Len_Mot caractères (les 5 lettres et le '\0')
 			fgetc(Fichier); // On passe l'espace qui suit
 		} while ( isalpha(Mots[iMot][0]) ); // On vérifie si le premier caractère lu est une lettre, si non on sait qu'il ne s'agit pas d'un mot, on j'arrete donc là
 		
@@ -38,7 +40,7 @@ int RandInt() {
 	return r;
 }
 
-int ifInData(char mot[], char Tab[][6]) {
+int ifInData(char mot[], char Tab[][Len_Mot]) {
 	
 	for (int i = 0; i < NBMOTS; i++) {
 		if ( strcmp(mot, Tab[i]) )
