@@ -3,7 +3,6 @@
 #include <time.h>
 #include <ctype.h> 
 #include <string.h>
-#include <stdbool.h>
 #include "../include/wordle.h"
 #define NBMOTS 2309
 #define Len_Mot 6
@@ -43,19 +42,17 @@ int RandInt() {
 int ifInData(char mot[], char Tab[][Len_Mot]) {
 	
 	for (int i = 0; i < NBMOTS; i++) {
-		if ( strcmp(mot, Tab[i]) )
+		if ( strcmp(mot, Tab[i]) == 0 )
 			return 1;
 	}
 	
 	return 0;
 }
 
-bool Find_Letter (char Mot[], char lettre)
-{
+int Find_Letter (char Mot[], char lettre) {
+	
 	if(strchr(Mot, lettre) != NULL)
-	{
-		return true;
-	}
-	else
-	return false;
+		return 1;
+		
+	return 0;
 }

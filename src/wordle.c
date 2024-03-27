@@ -6,56 +6,68 @@
 #define FIN "\x1b[0m"
 
 
-int main() 
-{
-	char tab[NBMOTS][Len_Mot];
-	Tab_mots(tab);
-	char tab1[Len_Mot];
-	strcpy( tab1, tab[RandInt()] );
-	char guess[Len_Mot];
-	
-	int compteur= 0;
-	int cmpt_vert=0;
+int main() {
+	int Choix = 1,  cmpt_vert, compteur;
+	char tab[NBMOTS][Len_Mot], tab1[Len_Mot], guess[Len_Mot];
 
+	Tab_mots(tab);
 	
-	printf("Le mot a trouver commence par la lettre %s. \n", tab1);
-	
-	while(compteur < 6)
-	{	
-		if (cmpt_vert== 5)
-			break;
-		else cmpt_vert=0;
-			
-		printf("Entrer un mot de 5 lettres: ");
-		scanf("%s" , guess );
-		printf("\n");			
+	while (Choix != 0) {
 		
-		for(int j=0; j< 5; j++)
-		{
-			guess[j] = tolower(guess[j]);
-			
-			if( tab1[j] == guess[j])
-			{
-				printf(VERT"%c"FIN, toupper(guess[j]) );
-				cmpt_vert++;	
-			}
-			else if(Find_Letter(tab1, guess[j]))
-				printf(ROUGE CLIGNE"%c"FIN, toupper(guess[j]) );
+		strcpy( tab1, tab[RandInt()] );
+		
+		compteur = 0;
+		cmpt_vert = 0;
+	
+		printf("Le mot a trouver commence par la lettre %c.\n", toupper(tab1[0]));
+		
+		while(compteur < 6) {
 				
-			else printf(GRIS CLIGNE"%c"FIN, toupper(guess[j]));
+			if (cmpt_vert== 5)
+				break;
+				
+			else cmpt_vert=0;
+				
+			printf("Veuillez entrer un mot de 5 lettres : ");
+			scanf("%s" , guess );
+			for (int i  = 0; i < 5; i++) guess[i] = tolower(guess[i]);	
+				
+			if ( ifInData( guess, tab) ) {
+				
+				printf("\n");
+				for(int j=0; j< 5; j++) {
+					
+					if( tab1[j] == guess[j]) {
+						printf(VERT"%c"FIN, toupper(guess[j]) );
+						cmpt_vert++;	
+					}
+					
+					else if(Find_Letter(tab1, guess[j]))
+						printf(ROUGE CLIGNE"%c"FIN, toupper(guess[j]) );
+						
+					else printf(GRIS CLIGNE"%c"FIN, toupper(guess[j]));	
+				}
+				
+				compteur++;
+				printf("\n");
+				if (cmpt_vert != 5) printf("Il vous reste %i essai(s).\n", 6 - compteur);
+				printf("\n");	
+			}
 			
+			else printf("Le mot que vous avez inséré n'est pas dans la base de donnée.\n\n");
 		}
-		printf("\n");
-		printf("\n");
-		compteur++;
-	}
+		
+		
+		if (cmpt_vert==5) {
+			printf("Bravo, vous avez trouver le mot %s !\n\n", tab1);
+		}
+		
+		else printf("Vous n'avez pas trouver le mot. Le mot etait %s.\n\n", tab1);
 	
-	
-	if (cmpt_vert==5)
-	{
-		printf("Vous avez trouver le mot %s ! \n", tab1);
+		printf("Que voulez vous faire maintenant ?\nEntrez 1 pour commencer une nouvelle partie et 0 pour arrêtez de jouer : ");
+		scanf("%i" , &Choix );
+		printf("\n");
 	}
-	else printf("Vous n'avez pas trouver le mot. Le mot etait %s . \n", tab1);
 	
 	return 0;			
 }
