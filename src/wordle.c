@@ -1,4 +1,9 @@
 #include "fonction.c"
+#define VERT "\x1b[32m"
+#define ROUGE "\x1b[31m"
+#define GRIS "\x1b[2m"
+#define CLIGNE "\x1b[5m"
+#define FIN "\x1b[0m"
 
 
 int main() 
@@ -13,14 +18,12 @@ int main()
 	int cmpt_vert=0;
 
 	
-	printf("Le mot a trouver commence par la lettre %c. \n", tab1[0]);
+	printf("Le mot a trouver commence par la lettre %s. \n", tab1);
 	
 	while(compteur < 6)
 	{	
 		if (cmpt_vert== 5)
-		{
 			break;
-		}
 		else cmpt_vert=0;
 			
 		printf("Entrer un mot de 5 lettres: ");
@@ -29,17 +32,20 @@ int main()
 		
 		for(int j=0; j< 5; j++)
 		{
-			if(tab1[j]== guess[j])
+			guess[j] = tolower(guess[j]);
+			
+			if( tab1[j] == guess[j])
 			{
-				printf("La lettre %c est verte \n", guess[j] );
+				printf(VERT"%c"FIN, toupper(guess[j]) );
 				cmpt_vert++;	
 			}
-			else if(tab1[j] != guess[j]  && Find_Letter(tab1, guess[j]))
-			{
-				printf("La lettre %c est orange\n", guess[j]);
-			}
-			else printf("La lettre %c est gris\n", guess[j]);		
+			else if(Find_Letter(tab1, guess[j]))
+				printf(ROUGE CLIGNE"%c"FIN, toupper(guess[j]) );
+				
+			else printf(GRIS CLIGNE"%c"FIN, toupper(guess[j]));
+			
 		}
+		printf("\n");
 		printf("\n");
 		compteur++;
 	}
