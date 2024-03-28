@@ -4,7 +4,7 @@
 int main() {
 	int Choix = 1,  cmpt_vert, compteur;
 	char tab[NBMOTS][Len_Mot], tab1[Len_Mot], guess[Len_Mot];
-
+	
 	Tab_mots(tab);
 	
 	while (Choix != 0) {

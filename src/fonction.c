@@ -40,7 +40,7 @@ void Tab_mots(char Mots[][Len_Mot]) {
 
 int RandInt() {
 	srand(time(NULL));
-	int r = rand() % ( NBMOTS + 1);
+	int r = rand() % NBMOTS;
 
 	return r;
 }
