@@ -1,9 +1,4 @@
 #include "fonction.c"
-#define VERT "\x1b[32m"
-#define ROUGE "\x1b[31m"
-#define GRIS "\x1b[2m"
-#define CLIGNE "\x1b[5m"
-#define FIN "\x1b[0m"
 
 
 int main() {
