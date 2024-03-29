@@ -14,7 +14,7 @@ int main() {
 		compteur = 0;
 		cmpt_vert = 0;
 	
-		printf("Le mot a trouver commence par la lettre %c.\n", toupper(tab1[0]));
+		printf("Essayer de trouver le mot mystère.\n");
 		
 		while(compteur < 6) {
 				
